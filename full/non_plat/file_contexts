@@ -26,8 +26,7 @@
 # Vendor/bin files
 # 
 # /(system\/vendor|vendor)/bin/br_app_data_service u:object_r:br_app_data_service_exec:s0
-/(system\/vendor|vendor)/bin/volte_uce_ua u:object_r:volte_uce_ua_exec:s0
-/(system\/vendor|vendor)/bin/mbimd u:object_r:mbimd_exec:s0
+# /(system\/vendor|vendor)/bin/volte_uce_ua u:object_r:volte_uce_ua_exec:s0
 # TODO:: atcp_exec removed
 # /(system\/vendor|vendor)/bin/atcp u:object_r:atcp_exec:s0
 

@@ -6,7 +6,6 @@
 # Type Declaration
 # ==============================================
 
-type terservice_exec , exec_type, file_type;
 # New added for move to /system
 typeattribute terservice coredomain;
 
