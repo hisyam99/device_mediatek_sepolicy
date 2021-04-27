@@ -1,4 +1,4 @@
-#====================== uncrypt.te ======================
+# ====================== uncrypt.te ======================
 # uncrypt for mtd
 allow uncrypt mtd_device:chr_file { read write open ioctl };
 allow uncrypt mtd_device:dir search;

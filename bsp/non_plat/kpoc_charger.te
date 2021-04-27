@@ -1,12 +1,19 @@
-# Purpose : Allow access logo block
+# ==============================================
+# Policy File of /system/bin/kpoc_charger Executable File
+
+
 allow kpoc_charger logo_block_device:blk_file { read open };
 
+# Date : WK15.45
+# Operation : Migration
 # Purpose : add sepolicy for kpoc_charger
 allow kpoc_charger logo_device:chr_file read;
 allow kpoc_charger logo_device:chr_file open;
 allow kpoc_charger bootdevice_block_device:blk_file read;
 allow kpoc_charger bootdevice_block_device:blk_file open;
 
+# Date : WK18.20
+# Operation : Android P migration
 # Purpose : access boot mode
 allow kpoc_charger sysfs_boot_mode:file r_file_perms;
 

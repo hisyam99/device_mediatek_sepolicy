@@ -1,5 +1,20 @@
+# ==============================================================================
+# Policy File of /vendor/bin/camerahalserver Executable File
+
+# ==============================================================================
+# Type Declaration
+# ==============================================================================
+
 type mtk_hal_camera, domain;
 type mtk_hal_camera_exec, exec_type, file_type, vendor_file_type;
+
+# ==============================================================================
+# MTK Policy Rule
+# ==============================================================================
+
+# -----------------------------------
+# Purpose: Binderized HAL Server
+# -----------------------------------
 
 # Set up a transition from init to the camerahalserver upon executing its binary.
 init_daemon_domain(mtk_hal_camera)
@@ -39,6 +54,7 @@ binder_call(mtk_hal_camera, mtk_hal_power)
 # Purpose: Allow camerahalserver to find a service from hwservice_manager
 # -----------------------------------
 allow mtk_hal_camera hal_graphics_mapper_hwservice:hwservice_manager find;
+# allow mtk_hal_camera hal_graphics_allocator_hwservice:hwservice_manager find;
 allow mtk_hal_camera fwk_sensor_hwservice:hwservice_manager find;
 allow mtk_hal_camera mtk_hal_power_hwservice:hwservice_manager find;
 allow mtk_hal_camera nvram_data_file:lnk_file { read write getattr setattr read create open };
@@ -131,16 +147,17 @@ allow mtk_hal_camera fuse:file rw_file_perms;
 # -----------------------------------
 # Purpose: Storage access
 # -----------------------------------
-# nvram access
+# # Date : WK14.XX-15.XX
+# # nvram access
 allow mtk_hal_camera block_device:dir { write search };
 allow mtk_hal_camera nvram_data_file:dir { search add_name write create};
 allow mtk_hal_camera nvram_data_file:file { write getattr setattr read create open };
-
-# nvram access (dumchar case for nand and legacy chip)
+# # nvram access (dumchar case for nand and legacy chip)
 allow mtk_hal_camera nvram_device:chr_file rw_file_perms;
 allow mtk_hal_camera self:netlink_kobject_uevent_socket { create setopt bind };
 
-# sdcard access - dump for debug
+# # Date : WK14.XX-15.XX
+# # sdcard access - dump for debug
 allow mtk_hal_camera sdcard_type:dir { write add_name create };
 allow mtk_hal_camera sdcard_type:file { append create getattr };
 
@@ -150,6 +167,7 @@ allow mtk_hal_camera sdcard_type:file { append create getattr };
 allow mtk_hal_camera mtkcam_prop:file { open read getattr };
 
 # -----------------------------------
+# Android O
 # Purpose: Shell Debugging
 # -----------------------------------
 # Purpose: Allow shell to invoke "lshal debug <interface>", where <interface> is "ICameraProvider".
@@ -158,6 +176,7 @@ allow mtk_hal_camera shell:unix_stream_socket { read write };
 allow mtk_hal_camera shell:fifo_file write;
 
 # -----------------------------------
+# Android O
 # Purpose: AEE Debugging
 # -----------------------------------
 # Purpose: Allow aee_dumpstate to invoke "lshal debug <interface>", where <interface> is "ICameraProvider".
@@ -174,12 +193,14 @@ allow mtk_hal_camera aee_exp_vendor_file:dir { w_dir_perms };
 allow mtk_hal_camera aee_exp_vendor_file:file { create_file_perms };
 
 # -----------------------------------
+# Android O
 # Purpose: Debugging
 # -----------------------------------
 # Purpose: libmemunreachable.so/GetUnreachableMemory()
 allow mtk_hal_camera self:process { ptrace };
 
-################################################################################
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+# Date : WK14.XX-15.XX
 # Operation : Copy from Media server
 allow mtk_hal_camera self:capability { setuid ipc_lock sys_nice };
 allow mtk_hal_camera sysfs_wake_lock:file rw_file_perms;
@@ -187,72 +208,84 @@ allow mtk_hal_camera nvdata_file:dir { write search add_name };
 allow mtk_hal_camera nvdata_file:file { read write getattr setattr open create };
 allow mtk_hal_camera proc_meminfo:file { read getattr open };
 
-# Purpose : for low SD card latency issue
+# # Purpose : for low SD card latency issue
 allow mtk_hal_camera sysfs_lowmemorykiller:file { read open };
 
-# Purpose : for change thermal policy when needed
+# # Purpose : for change thermal policy when needed
 allow mtk_hal_camera proc_mtkcooler:dir search;
 allow mtk_hal_camera proc_mtktz:dir search;
 allow mtk_hal_camera proc_thermal:dir search;
 allow mtk_hal_camera thermal_manager_data_file:file create_file_perms;
 allow mtk_hal_camera thermal_manager_data_file:dir { rw_dir_perms setattr };
 
-# Purpose : cts search strange app
+# # Purpose : cts search strange app
 allow mtk_hal_camera untrusted_app:dir search;
 
-# Purpose : offloadservice
+# # Purpose : offloadservice
 allow mtk_hal_camera offloadservice_device:chr_file rw_file_perms;
 
-# Purpose: for camera middleware dump image buffer to sdcard & audio frameworks dump
+# # Purpose: for camera middleware dump image buffer to sdcard & audio frameworks dump
 allow mtk_hal_camera storage_file:lnk_file {read write};
 allow mtk_hal_camera mnt_user_file:dir {write read search};
 allow mtk_hal_camera mnt_user_file:lnk_file {read write};
 
-# Purpose: Allow mtk_hal_camera to read binder from surfaceflinger
+# # Purpose: Allow mtk_hal_camera to read binder from surfaceflinger
 allow mtk_hal_camera surfaceflinger:fifo_file {read write};
 
-# Purpose : camera read/write /nvcfg/camera data
+# # Purpose : camera read/write /nvcfg/camera data
 allow mtk_hal_camera nvcfg_file:dir create_dir_perms;
 allow mtk_hal_camera nvcfg_file:file create_file_perms;
 
 # Purpose : for camera init
 allow mtk_hal_camera system_server:unix_stream_socket { read write };
 
-################################################################################
-# Purpose: research root dir "/"
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+# Date : WK16
+# Operation : N Migration
+# # Purpose: research root dir "/"
 allow mtk_hal_camera tmpfs:dir search;
 
-# Purpose : EGL file access
+# # Purpose : EGL file access
 allow mtk_hal_camera system_file:dir { read open };
 allow mtk_hal_camera gpu_device:dir search;
 allow mtk_hal_camera gpu_device:chr_file rw_file_perms;
 
-# Purpose: Allow to access ged for gralloc_extra functions
+# # Purpose: Allow to access ged for gralloc_extra functions
 allow mtk_hal_camera proc_ged:file rw_file_perms;
 allowxperm mtk_hal_camera proc_ged:file ioctl { proc_ged_ioctls };
 
-################################################################################
-# Purpose: Allow to call hal_graphics_allocator binder.
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+# Date : WK17
+# Operation : O Migration
+# # Purpose: Allow to call hal_graphics_allocator binder.
 allow mtk_hal_camera system_data_file:lnk_file read;
 
 allow mtk_hal_camera debugfs_tracing:file { write open };
 
-# Purpose : camera3 IT/CTS
+# # Purpose : camera3 IT/CTS
 allow mtk_hal_camera debugfs_ion:dir search;
 allow mtk_hal_camera hal_graphics_composer_default:fd use;
 allow mtk_hal_camera property_socket:sock_file write;
 
+# Date : WK17.30
+# Operation : O Migration
 # Purpose: Allow to access cmdq driver
 allow mtk_hal_camera mtk_cmdq_device:chr_file { read ioctl open };
 allow mtk_hal_camera mtk_mdp_device:chr_file rw_file_perms;
 
+# Date : WK17.36
+# Operation : O Migration
 # Purpose: Allow to access battery status
-allow mtk_hal_camera sysfs_battery_supply:dir search;
-allow mtk_hal_camera sysfs_battery_supply:file { getattr open read };
+allow mtk_hal_camera sysfs_batteryinfo:dir search;
+allow mtk_hal_camera sysfs_batteryinfo:file { getattr open read };
 
+# Date : WK17.39
+# Operation : O Migration
 # Purpose: Change thermal config
 allow mtk_hal_camera mtk_thermal_config_prop:property_service set;
 
+# Date : WK18.31
+# Stage: P Migration
 # Purpose: CCT
 allow mtk_hal_camera graphics_device:chr_file { read write ioctl open };
 allow mtk_hal_camera graphics_device:dir search;
@@ -260,18 +293,23 @@ allow mtk_hal_camera cct_data_file:dir create_dir_perms;
 allow mtk_hal_camera cct_data_file:file create_file_perms;
 allow mtk_hal_camera cct_data_file:fifo_file create_file_perms;
 allow mtk_hal_camera sysfs_boot_mode:file { read open };
-allow mtk_hal_camera sysfs_bus:dir r_dir_perms;
 allow mtk_hal_camera mnt_vendor_file:dir create_dir_perms;
 allow mtk_hal_camera mnt_vendor_file:fifo_file create_file_perms;
 
+# Date : WK18.01
+# Operation : label aee_aed sockets
 # Purpose : Engineering mode need access for aee commmand
 userdebug_or_eng(`
 allow mtk_hal_camera aee_aedv:unix_stream_socket connectto;
 ')
 
+# Date : WK18.02
+# Stage: O Migration
 # Purpose: ISP tuning remapping
 allow mtk_hal_camera mediatek_prop:property_service set;
 
+# Date : WK18.22
+# Stage: p Migration
 # Purpose: NVRAM
 allow mtk_hal_camera nvram_data_file:dir search;
 allow mtk_hal_camera nvram_data_file:file rw_file_perms;
@@ -285,6 +323,7 @@ allow mtk_hal_camera nvcfg_file:file { read write getattr setattr open create };
 allow mtk_hal_camera mnt_vendor_file:dir search;
 allow mtk_hal_camera mnt_vendor_file:file create_file_perms;
 
+# Date : WK18.35
 # Purpose: allow mtk_hal_camera to access gz_device node
 allow mtk_hal_camera gz_device:chr_file rw_file_perms;
 
@@ -298,9 +337,11 @@ allow mtk_hal_camera proc_isp_p2:file {create_file_perms};
 # Purpose : AINR/Thermal Boost
 allow mtk_hal_camera system_data_file:dir { getattr };
 
+# Date: 2019/06/14
 # Operation : Migration
 allow mtk_hal_camera sysfs_dt_firmware_android:dir search;
 
+# Date: 2019/07/09
 # Operation : For M4U security
 allow mtk_hal_camera proc_m4u:file r_file_perms;
 allowxperm mtk_hal_camera proc_m4u:file ioctl{
@@ -311,19 +352,7 @@ MTK_M4U_T_DMA_OP
 MTK_M4U_T_SEC_INIT
 };
 
+# Date: 2019/08/27
 # Operation : For android Q allowing ioctl
 allow mtk_hal_camera mtk_hal_camera:unix_stream_socket { ioctl };
 allowxperm mtk_hal_camera mtk_hal_camera:unix_stream_socket ioctl IIOCNETAIF;
-
-allow mtk_hal_camera persist_data_file:file r_file_perms;
-allow mtk_hal_camera persist_data_file:dir r_dir_perms;
-allow mtk_hal_camera mnt_vendor_file:file r_file_perms;
-allow mtk_hal_camera mnt_vendor_file:dir r_dir_perms;
-allow mtk_hal_camera sysfs_emi_ctrl:dir r_dir_perms;
-allow mtk_hal_camera sysfs_emi_ctrl:file rw_file_perms;
-allow mtk_hal_camera SUB2AF_device:chr_file rw_file_perms;
-
-set_prop(mtk_hal_camera, vendor_camera_prop)
-set_prop(mtk_hal_camera, vendor_video_prop)
-get_prop(mtk_hal_camera, render_prop)
-set_prop(mtk_hal_camera, render_prop)

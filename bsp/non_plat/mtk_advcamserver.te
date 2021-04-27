@@ -1,3 +1,11 @@
+# ==============================================
+# Policy File of /system/bin/mtk_advcamserver Executable File
+
+# permissive mtk_advcamserver;
+# ==============================================
+# MTK Policy Rule
+# ==============================================
+
 binder_call(mtk_advcamserver, mtk_hal_camera)
 
 allow mtk_advcamserver hal_graphics_allocator_default:fd use;

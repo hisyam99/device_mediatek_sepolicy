@@ -1,3 +1,12 @@
+# ==============================================
+# Policy File of /vendor/bin/hw/vendor.mediatek.hardware.pq@2.0-service Executable File
+
+# ==============================================
+# MTK Policy Rule
+# ==============================================
+
+# Date : WK17.01
+# Operation : New feature: Factory Gamma
 # Purpose : Allow nvram access
 allow mtk_hal_pq system_data_file:lnk_file read;
 allow mtk_hal_pq nvdata_file:dir { write search add_name };

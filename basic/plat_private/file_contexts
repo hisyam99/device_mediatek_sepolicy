@@ -1,13 +1,19 @@
-#############################
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 # Data files
-#
+# 
+
 /data/system_de/mdfilter(/.*)? u:object_r:mddb_filter_data_file:s0
 /data/debuglogger(/.*)? u:object_r:debuglog_data_file:s0
 /data/ramdump(/.*)? u:object_r:debuglog_data_file:s0
 
-#############################
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+# debugfs files
+# 
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 # System files
-#
+# 
+
 /system/bin/mobile_log_d u:object_r:mobile_log_d_exec:s0
 /system/bin/aee_core_forwarder u:object_r:aee_core_forwarder_exec:s0
 /system/bin/mdlogger u:object_r:mdlogger_exec:s0
@@ -31,7 +37,6 @@
 /system/bin/mtkbootanimation u:object_r:mtkbootanimation_exec:s0
 /system/bin/boot_logo_updater u:object_r:boot_logo_updater_exec:s0
 
-# Dev
 /dev/ubi_ctrl u:object_r:mtd_device:s0
 /dev/ubi[_0-9]* u:object_r:mtd_device:s0
 /dev/block/mtd(.*)?     u:object_r:mtd_device:s0

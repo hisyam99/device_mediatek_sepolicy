@@ -1,3 +1,12 @@
+# ==============================================
+# MTK Policy Rule
+# ============
+
+# Date : WK14.37
+# Operation : Migration
+# Purpose : for idling on homescreen
+# allow system_server guiext-server:binder { transfer call };
+
 # Date: WK14.43
 # Operation : Migration
 # Purpose : for bring up
@@ -23,6 +32,7 @@ allow system_server proc_secmem:file rw_file_perms;
 # Purpose : for system_server operate /dev/RT_Monitor when enable hang detect
 allow system_server RT_Monitor_device:chr_file r_file_perms;
 
+
 # Date : WK15.24
 # Operation: TEEI integration
 # Purpose: access for fp device
@@ -39,10 +49,13 @@ allow system_server dm_agent_binder_service:service_manager find;
 # Operation: Migration
 # Purpose: [mtk_agpsd] Allow LocationExt connect to agpsd socket
 
+
 # Date : 2016/07/11
 # Operation : Migration
 # Purpose : Add permission for gpu access
 allow system_server dri_device:chr_file { read write open ioctl };
+
+
 
 # Date : 2017/01/24
 # Purpose : Add permission for DRM / DRI GPU driver
@@ -102,7 +115,7 @@ allow system_server wifi_prop:property_service set;
 
 # Date:W17.47
 # Purpose : Allow to enable/disable log too much
-get_prop(system_server, logmuch_prop);
+set_prop(system_server, logmuch_prop);
 
 # Date : W17.51
 # Operation : Migration
@@ -114,7 +127,7 @@ allow system_server mtk_fullscreen_switch_service:service_manager add;
 # Purpose : dfps hal interface permission
 hal_client_domain(system_server,hal_dfps)
 
-#============= system_server ==============
+# ============= system_server ==============
 allow system_server audioserver:file write;
 
 # Date : 2018/03/06
@@ -129,12 +142,12 @@ allow system_server mobicore_vendor_file:dir { read getattr open };
 
 # Date : W18.24
 # Operation : for AMS log
-#============= system_server ==============
+# ============= system_server ==============
 set_prop(system_server, mtk_amslog_prop)
 
 # Date : W18.25
 # Operation : for AMS-aal
-#============= system_server ==============
+# ============= system_server ==============
 set_prop(system_server, mtk_amsaal_prop)
 
 # Date : 6/20/2018
@@ -161,22 +174,22 @@ allow system_server mtk_data_shaping_service:service_manager add;
 
 # Date : W18.28
 # Operation : For auto tethering testing
-#============= system_server ==============
+# ============= system_server ==============
 get_prop(system_server, mtk_em_net_auto_tethering_prop)
 
 # Date : W18.28
 # Operation : Support telephony log
-#============= system_server ==============
+# ============= system_server ==============
 get_prop(system_server, mtk_em_tel_log_prop)
 
 # Date : W18.29
 # Operation : For background data disable function
-#============= system_server ==============
+# ============= system_server ==============
 get_prop(system_server, mtk_bgdata_disabled)
 
 # Date : W1831
 # Purpose : Support Trustonic TeeService
-#============= system_server ==============
+# ============= system_server ==============
 binder_call(system_server, teed_app)
 binder_call(system_server, teeregistryd_app)
 allow system_server tee_service:service_manager find;
@@ -184,13 +197,13 @@ allow system_server teeregistry_service:service_manager find;
 
 # Date : W19.12
 # Operation : For DuraSpeed Migration
-#============= system_server ==============
+# ============= system_server ==============
 allow system_server mtk_duraspeed_service:service_manager add;
 allow system_server proc_cpu_loading:file rw_file_perms;
 allow system_server debugfs_shrinker_debug:file r_file_perms;
 allow system_server debugfs_ion:dir r_dir_perms;
 allow system_server debugfs_ion:file r_file_perms;
-userdebug_or_eng(`
+userdebug_or_eng('
 allow system_server debugfs_tracing_debug:file r_file_perms;
 ')
 allow system_server proc_low_memory_hit:file rw_file_perms;
@@ -204,7 +217,7 @@ hal_client_domain(system_server, hal_omadm)
 
 # Date : W19.29
 # Operation : Support heavy loading
-#============= system_server ==============
+# ============= system_server ==============
 get_prop(system_server, mtk_heavy_loading_prop)
 
 # Date : WK19.29

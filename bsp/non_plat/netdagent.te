@@ -10,6 +10,14 @@ type netdagent_exec, exec_type, file_type, vendor_file_type;
 type netdagent, domain;
 
 # ==============================================
+# Android Policy Rule
+# ==============================================
+
+# ==============================================
+# NSA Policy Rule
+# ==============================================
+
+# ==============================================
 # MTK Policy Rule
 # ==============================================
 
@@ -19,6 +27,7 @@ domain_auto_trans(netdagent, netutils_wrapper_exec, netutils_wrapper)
 
 allow netdagent devpts:chr_file { open read write };
 allow netdagent system_data_file:dir getattr;
+# allow netdagent system_file:file lock;
 allow netdagent usermodehelper:file read;
 
 allow netdagent property_socket:sock_file write;
@@ -35,3 +44,4 @@ allow netdagent hidl_base_hwservice:hwservice_manager add;
 allow netdagent hwservicemanager:binder { call transfer };
 allow netdagent hwservicemanager_prop:file { getattr open read };
 hal_server_domain(netdagent, mtk_hal_netdagent);
+

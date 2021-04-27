@@ -1,3 +1,7 @@
+# ==============================================
+# MTK Policy Rule
+# ==============================================
+
 # Grant read access to mtk core property type which represents all
 # mtk properties except those with ctl_xxx prefix.
 # Align Google change: f01453ad453b29dd723838984ea03978167491e5
@@ -16,7 +20,13 @@ allow {
   -isolated_app
 } sysfs_devinfo:file r_file_perms;
 
+# Date:20170630
 # Purpose: allow trusted process to connect aee daemon
+# allow {
+#  coredomain
+#  -untrusted_app_all
+# } aee_aed:unix_stream_socket connectto;
 allow { domain -coredomain -hal_configstore_server -vendor_init } aee_aedv:unix_stream_socket connectto;
 allow { domain -coredomain -hal_configstore_server -vendor_init } aee_exp_vendor_file:file w_file_perms;
 allow { domain -coredomain -hal_configstore_server -vendor_init } aee_aedv:fd use;
+

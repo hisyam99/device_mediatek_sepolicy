@@ -1,9 +1,32 @@
+# ==============================================
+# Policy File of /system/bin/GoogleOtaBinder Executable File 
+
+
+# ==============================================
+# Type Declaration
+# ==============================================
+
 type GoogleOtaBinder_exec, system_file_type, exec_type, file_type;
 typeattribute GoogleOtaBinder coredomain;
 
+# ==============================================
+# Android Policy Rule
+# ==============================================
+
+# ==============================================
+# NSA Policy Rule
+# ==============================================
+
+# ==============================================
+# MTK Policy Rule
+# ==============================================
+
 # permissive GoogleOtaBinder;
 init_daemon_domain(GoogleOtaBinder)
+# unconfined_domain(GoogleOtaBinder)
 
+# Date : 2014/09/10
+# Operation : Migration
 # Purpose : allow Binder IPC
 binder_use(GoogleOtaBinder)
 binder_service(GoogleOtaBinder)

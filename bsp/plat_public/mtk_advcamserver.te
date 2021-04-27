@@ -1,1 +1,11 @@
-type mtk_advcamserver, domain;
+# ==============================================
+# Policy File of /system/bin/mtk_advcamserver Executable File
+
+# permissive mtk_advcamserver;
+
+# ==============================================
+# Type Declaration
+# ==============================================
+
+type mtk_advcamserver ,domain;
+

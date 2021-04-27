@@ -1,3 +1,7 @@
+# ==============================================
+# MTK Policy Rule
+# ==============================================
+
 type teed_app, domain;
 
 typeattribute teed_app coredomain;
@@ -17,8 +21,8 @@ allow teed_app display_service:service_manager find;
 allow teed_app network_management_service:service_manager find;
 allow teed_app notification_service:service_manager find;
 
-#============= teed_app.te ==============
+# ============= teed_app.te ==============
 allow teed_app system_app_data_file:dir { getattr search };
 
-#============= teed_app for TUI ==============
+# ============= teed_app for TUI ==============
 allow teed_app surfaceflinger_service:service_manager find;

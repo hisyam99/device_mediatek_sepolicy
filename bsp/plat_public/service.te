@@ -1,3 +1,6 @@
+# ==============================================
+# MTK Policy Rule
+# ==============================================
 type mtk_anrmanager_service, app_api_service, system_server_service, service_manager_type;
 
 type mtk_permrecords_service, app_api_service, system_server_service, service_manager_type;
@@ -38,6 +41,7 @@ type vtservice_hidl_service, service_manager_type;
 type mtk_hdmi_service,service_manager_type;
 type ppl_agent_service, service_manager_type;
 type mtk_gwsd_service, service_manager_type;
+type mtk_presence_service, service_manager_type;
 
 # Trustonic Services
 type tee_service, service_manager_type;

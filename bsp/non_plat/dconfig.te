@@ -1,6 +1,12 @@
+# ==============================================
+# Type Declaration
+# ==============================================
 type mtk_dconfig, domain;
 type mtk_dconfig_exec, exec_type, file_type, vendor_file_type;
 
+# ==============================================
+# MTK Policy Rule
+# ==============================================
 init_daemon_domain(mtk_dconfig)
 
 allow mtk_dconfig mtk_hal_dplanner:fd use;

@@ -1,5 +1,16 @@
+# ==============================================
+# Policy File of /vendor/bin/hw/vendor.mediatek.hardware.mms@1.0-service Executable File
+
+# ==============================================
+# Type Declaration
+# ==============================================
+
 type mtk_hal_mms, domain;
 type mtk_hal_mms_exec, exec_type, file_type, vendor_file_type;
+
+# ==============================================
+# MTK Policy Rule
+# ==============================================
 
 # Setup for domain transition
 init_daemon_domain(mtk_hal_mms)
@@ -8,14 +19,11 @@ init_daemon_domain(mtk_hal_mms)
 hwbinder_use(mtk_hal_mms);
 
 # Allow a set of permissions required for a domain to be a server which provides a HAL implementation over HWBinder.
+hal_server_domain(mtk_hal_mms, hal_mms)
 typeattribute mtk_hal_mms untrusted_app_visible_halserver_violators;
 
 # add/find permission rule to hwservicemanager
-add_hwservice(hal_mms_server, hal_mms_hwservice)
-hal_server_domain(mtk_hal_mms, hal_mms)
-add_hwservice(mtk_hal_mms, hal_mms_hwservice)
-allow mtk_hal_mms hal_mms_hwservice:hwservice_manager find;
-allow mtk_hal_mms hidl_base_hwservice:hwservice_manager add;
+add_hwservice(hal_mms_server, mtk_hal_mms_hwservice)
 
 # Purpose : Allow to use kernel driver
 allow mtk_hal_mms graphics_device:chr_file { read write open ioctl };
@@ -48,22 +56,5 @@ allowxperm mtk_hal_mms proc_mtk_jpeg:file ioctl {
 
 # Purpose : Allow to use mms by JPEG with handle
 allow mtk_hal_mms platform_app:fd use;
-
 # Purpose : Allow Miravision to set Sharpness
 allow mtk_hal_mms system_app:fd use;
-
-# Purpose : Allow untrusted apps to use MMS hals
-allow mtk_hal_mms untrusted_app_all:fd use;
-
-# Purpose : Allow MMS hals to read render props
-get_prop(mtk_hal_mms, render_prop)
-
-# Allow binder calls from gmscore_app to mtk_hal_mms and vice versa
-binder_call(gmscore_app, mtk_hal_mms)
-binder_call(mtk_hal_mms, gmscore_app)
-
-# Allow gmscore_app to use fd
-allow mtk_hal_mms gmscore_app:fd use;
-
-# Boot Mode
-allow mtk_hal_mms sysfs_boot_mode:file r_file_perms;

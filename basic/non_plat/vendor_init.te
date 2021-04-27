@@ -1,22 +1,7 @@
-typeattribute vendor_init data_between_core_and_vendor_violators;
+allow vendor_init exported3_system_prop:property_service set;
+allow vendor_init dalvik_prop:property_service set;
 
-# Allow vendor_init to set camera_prop
-set_prop(vendor_init, vendor_camera_prop)
-set_prop(vendor_init, exported_default_prop)
-set_prop(vendor_init, system_prop)
-
-allow vendor_init {
-  nfc_socket
-  system_data_file
-  media_rw_data_file
-  tombstone_data_file
-  camera_data_file
-  rootfs
-  wifi_data_file
-  wpa_socket
-  dhcp_data_file
-}:dir { create search getattr open read setattr ioctl write add_name remove_name rmdir relabelfrom };
-
+allow vendor_init ffs_prop:property_service set;
 allow vendor_init mediatek_prop:property_service set;
 allow vendor_init mtk_md_version_prop:property_service set;
 allow vendor_init mtk_volte_prop:property_service set;
@@ -25,9 +10,8 @@ allow vendor_init mtk_ril_mode_prop:property_service set;
 allow vendor_init wmt_prop:property_service set;
 allow vendor_init coredump_prop:property_service set;
 allow vendor_init proc_wmtdbg:file w_file_perms;
-allow vendor_init media_rw_data_file:file create_file_perms;
-allow vendor_init media_rw_data_file:file relabelfrom;
-allow vendor_init kernel:system module_request;
+allow vendor_init vold_prop:property_service set;
+
 allow vendor_init proc:file write;
 allow vendor_init proc_cpufreq:file w_file_perms;
 allow vendor_init proc_bootprof:file write;
@@ -56,7 +40,6 @@ set_prop(vendor_init, mtk_anr_support_prop)
 set_prop(vendor_init, mtk_antutu_prop)
 set_prop(vendor_init, mtk_bt_sap_enable_prop)
 set_prop(vendor_init, coredump_prop)
-get_prop(vendor_init, vendor_video_prop)
 
 # allow create symbolic link, /mnt/sdcard, for meta/factory mode
 allow vendor_init tmpfs:lnk_file create;
@@ -92,5 +75,3 @@ set_prop(vendor_init, mtk_wifi_hotspot_prop)
 set_prop(vendor_init, persist_aeev_prop)
 
 set_prop(vendor_init, mtk_powerhal_prop)
-
-set_prop(vendor_init, vendor_dpliner_prop)

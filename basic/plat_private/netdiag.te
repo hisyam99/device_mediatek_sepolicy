@@ -1,3 +1,8 @@
+# ==============================================
+# MTK Policy Rule
+# ==============================================
+
+# New added for move to /system
 type netdiag_exec, system_file_type, exec_type, file_type;
 typeattribute netdiag coredomain;
 
@@ -26,6 +31,7 @@ allow netdiag system_file:file rx_file_perms;
 allow netdiag self:capability { net_admin setuid net_raw setgid};
 allow netdiag shell_exec:file rx_file_perms;
 
+
 # access /proc/318/net/psched
 allow netdiag proc_net:file r_file_perms;
 
@@ -34,6 +40,7 @@ allow netdiag dnsproxyd_socket:sock_file write;
 allow netdiag fwmarkd_socket:sock_file write;
 allow netdiag netd:unix_stream_socket connectto;
 allow netdiag self:udp_socket connect;
+
 
 # Purpose : for service permission
 typeattribute netdiag mlstrustedsubject;
@@ -77,11 +84,13 @@ allow netdiag kernel:system module_request;
 allow netdiag self:rawip_socket { getopt create };
 allow netdiag self:udp_socket { ioctl create };
 
-#avc: denied { open } for path="/dev/__properties__/u:object_r:atm_ipaddr_prop:s0"
-#avc: denied { getattr } for path="/dev/__properties__/u:object_r:atm_ipaddr_prop:s0"
-#avc: denied { open } for path="/dev/__properties__/u:object_r:atm_mdmode_prop:s0"
+# # Android P migration
+# avc: denied { open } for path="/dev/__properties__/u:object_r:atm_ipaddr_prop:s0"
+# avc: denied { getattr } for path="/dev/__properties__/u:object_r:atm_ipaddr_prop:s0"
+# avc: denied { open } for path="/dev/__properties__/u:object_r:atm_mdmode_prop:s0"
 allow netdiag proc_qtaguid_stat:dir { read open search };
 allow netdiag proc_qtaguid_stat:file { read getattr open };
+# allow netdiag vendor_default_prop:file  { read getattr open map };
 get_prop(netdiag, vendor_default_prop)
 allow netdiag proc_net_tcp_udp:file getattr;
 allow netdiag netd:binder call;

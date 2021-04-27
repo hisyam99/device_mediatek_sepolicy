@@ -1,5 +1,13 @@
-# CPUFREQ
-type mbimd_exec, exec_type, file_type, vendor_file_type;
+# ==============================================
+# MTK Policy Rule
+# ==============================================
 
-# Last kernel
-type proc_last_kmsg, fs_type, proc_type;
+# File types
+
+# ==============================================
+# MTK Policy Rule
+# ==============================================
+
+# CPUFREQ
+# No needed, remove it
+# type sysfs_cpu_freq, fs_type, sysfs_type, mlstrustedobject;

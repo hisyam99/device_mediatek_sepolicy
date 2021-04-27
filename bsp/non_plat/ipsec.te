@@ -1,3 +1,9 @@
+# ==============================================
+# Policy File of /system/bin/wo_ipsec Executable File
+
+# ==============================================
+# Type Declaration
+# ==============================================
 type wo_starter_exec, exec_type, file_type, vendor_file_type;
 type wo_charon_exec, exec_type, file_type, vendor_file_type;
 type wo_ipsec_exec, exec_type, file_type, vendor_file_type;
@@ -7,6 +13,13 @@ type wo_ipsec, domain;
 net_domain(wo_ipsec)
 
 domain_auto_trans(wo_ipsec, netutils_wrapper_exec, netutils_wrapper)
+
+# ==============================================
+# MTK Policy Rule
+# ==============================================
+
+# Date: WK14.52
+# Operation : Feature developing for ePDG
 
 # Purpose :  access xfrm
 allow wo_ipsec proc_net:file write;
@@ -43,7 +56,7 @@ allow wo_ipsec wo_charon_exec:file execute_no_trans;
 allow wo_ipsec fwmarkd_socket:sock_file write;
 
 # Purpose :  kernel ip/route operations
-#allow wo_ipsec self:capability { net_admin net_bind_service dac_override kill };
+# allow wo_ipsec self:capability { net_admin net_bind_service dac_override kill };
 
 # Purpose :  send/receive packet to/from peer
 allow wo_ipsec self:tcp_socket { write getattr connect read getopt create };
@@ -81,3 +94,4 @@ allow wo_ipsec netd_socket:sock_file write;
 allow wo_ipsec system_data_file:dir getattr;
 allow wo_ipsec vendor_toolbox_exec:file { getattr execute execute_no_trans };
 allow wo_ipsec kernel:system module_request;
+

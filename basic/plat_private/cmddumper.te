@@ -1,3 +1,7 @@
+# ==============================================
+# MTK Policy Rule
+# ==============================================
+
 # New added for move to /system
 type cmddumper_exec, system_file_type, exec_type, file_type;
 typeattribute cmddumper coredomain;
@@ -10,6 +14,7 @@ allow cmddumper system_data_file:dir { create_dir_perms relabelfrom relabelto};
 # "mdl_serv_fifo" scontext=u:r:cmddumper:s0 tcontext=u:object_r:system_data_file
 allow cmddumper system_data_file:fifo_file create_file_perms;
 
+
 # for modem logging sdcard access
 allow cmddumper sdcard_type:dir create_dir_perms;
 allow cmddumper sdcard_type:file create_file_perms;
@@ -21,14 +26,14 @@ allow cmddumper platform_app:unix_stream_socket connectto;
 allow cmddumper shell_exec:file { rx_file_perms };
 allow cmddumper system_file:file x_file_perms;
 
+
 # purpose: allow cmddumper to access storage in N version
 allow cmddumper media_rw_data_file:file  { create_file_perms };
 allow cmddumper media_rw_data_file:dir { create_dir_perms };
 
 # purpose: access plat_file_contexts
 allow cmddumper file_contexts_file:file { read getattr open };
-
-# Save C2K modem log into data
+# # Save C2K modem log into data
 allow cmddumper debuglog_data_file:dir {relabelto create_dir_perms};
 allow cmddumper debuglog_data_file:file create_file_perms;
 allow cmddumper system_data_file:dir create_dir_perms;

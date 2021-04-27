@@ -1,8 +1,12 @@
-#=============DMC control property=============
+# ==============================================
+# MTK Policy Rule
+# ==============================================
+
+# =============DMC control property=============
 type mtk_dmc_prop, property_type;
 
-#=============PKM control property=============
+# =============PKM control property=============
 type mtk_pkm_init_prop, property_type;
 
-#=============MDM init control property=============
+# =============MDM init control property=============
 type init_svc_md_monitor_prop, property_type;

@@ -12,6 +12,9 @@ typeattribute aee_aedv mlstrustedsubject;
 
 init_daemon_domain(aee_aedv)
 
+
+# Date : WK14.32
+# Operation : AEE UT
 # Purpose : for AEE module
 allow aee_aedv aed_device:chr_file rw_file_perms;
 allow aee_aedv expdb_device:chr_file rw_file_perms;
@@ -47,6 +50,8 @@ allow aee_aedv domain:lnk_file getattr;
 # core-pattern
 allow aee_aedv usermodehelper:file r_file_perms;
 
+# Date: W15.34
+# Operation: Migration
 # Purpose: For pagemap & pageflags information in NE DB
 userdebug_or_eng(`allow aee_aedv self:capability sys_admin;')
 
@@ -85,14 +90,28 @@ allow aee_aedv sysfs_vibrator:file w_file_perms;
 # /proc/lk_env
 allow aee_aedv proc_lk_env:file rw_file_perms;
 
+# Data : 2017/03/22
+# Operation : add NE flow rule for Android O
 # Purpose : make aee_aedv can get specific process NE info
 allow aee_aedv domain:dir r_dir_perms;
 allow aee_aedv domain:{ file lnk_file } r_file_perms;
+# allow aee_aedv {
+#  domain
+#  -logd
+#  -keystore
+#  -init
+# }:process ptrace;
+# allow aee_aedv zygote_exec:file r_file_perms;
+# allow aee_aedv init_exec:file r_file_perms;
 
+# Data : 2017/04/06
+# Operation : add selinux rule for crash_dump notify aee_aedv
 # Purpose : make aee_aedv can get notify from crash_dump
 allow aee_aedv crash_dump:dir search;
 allow aee_aedv crash_dump:file r_file_perms;
 
+# Date : 20170512
+# Operation : fix aee_archive can't execute issue
 # Purpose : type=1400 audit(0.0:97916): avc: denied { execute_no_trans } for
 #           path="/system/vendor/bin/aee_archive" dev="mmcblk0p26" ino=2355
 #           scontext=u:r:aee_aedv:s0 tcontext=u:object_r:vendor_file:s0
@@ -100,6 +119,7 @@ allow aee_aedv crash_dump:file r_file_perms;
 allow aee_aedv vendor_file:file execute_no_trans;
 
 # Purpose: debugfs files
+# allow aee_aedv debugfs:lnk_file read;
 allow aee_aedv debugfs_binder:dir { read open };
 allow aee_aedv debugfs_binder:file { read open };
 allow aee_aedv debugfs_blockio:file { read open };
@@ -274,11 +294,11 @@ binder_call(aee_aedv, mtk_hal_camera)
 allow aee_aedv selinuxfs:file r_file_perms;
 
 # Purpose: Allow aee_aedv to read /proc/pid/exe
-#allow aee_aedv exec_type:file r_file_perms;
+# allow aee_aedv exec_type:file r_file_perms;
 
 # Purpose: mrdump db flow and pre-allocation
 # mrdump db flow
-allow aee_aedv sysfs_dt_firmware_android:dir { open read search };
+allow aee_aedv sysfs_dt_firmware_android:dir search;
 allow aee_aedv sysfs_dt_firmware_android:file r_file_perms;
 allow aee_aedv kernel:system module_request;
 allow aee_aedv metadata_file:dir search;
@@ -332,6 +352,9 @@ allow aee_aedv proc_vmallocinfo:file r_file_perms;
 # Purpose: allow aee_aedv to read /proc/vmstat
 allow aee_aedv proc_vmstat:file r_file_perms;
 
+# Purpose: Allow aee_aedv to read /proc/cpu/alignment
+allow aee_aedv proc_cpu_alignment:file w_file_perms;
+
 # Purpose: Allow aee_aedv to read /proc/gpulog
 allow aee_aedv proc_gpulog:file r_file_perms;
 
@@ -343,6 +366,9 @@ allow aee_aedv proc_sched_debug:file r_file_perms;
 
 # Purpose: Allow aee_aedv to read /proc/atf_log
 allow aee_aedv proc_atf_log:dir search;
+
+# Purpose: Allow aee_aedv to read /proc/last_kmsg
+allow aee_aedv proc_last_kmsg:file r_file_perms;
 
 # Purpose: Allow aee_aedv to access /sys/devices/virtual/timed_output/vibrator/enable
 allow aee_aedv sysfs_vibrator_setting:dir search;
@@ -372,13 +398,16 @@ userdebug_or_eng(`
 allow aee_aedv debugfs_tracing_debug:file { rw_file_perms };
 ')
 
+# Purpose: Allow aee_aedv to read /sys/mtk_memcfg/slabtrace
+allow aee_aedv proc_slabtrace:file r_file_perms;
+
 # Purpose: Allow aee_aedv to read /proc/mtk_cmdq_debug/status
 allow aee_aedv proc_cmdq_debug:file r_file_perms;
 
 # temp solution
 get_prop(aee_aedv, vendor_default_prop)
 
-#data/dipdebug
+# data/dipdebug
 allow aee_aedv aee_dipdebug_vendor_file:dir r_dir_perms;
 allow aee_aedv aee_dipdebug_vendor_file:file r_file_perms;
 allow aee_aedv proc_isp_p2:dir r_dir_perms;
@@ -405,15 +434,7 @@ allow aee_aedv proc_dbg_repo:file r_file_perms;
 # Purpose: Allow aee_aedv to read /proc/pl_lk
 allow aee_aedv proc_pl_lk:file r_file_perms;
 
-# Purpose: Allow aee_aedv to read /proc/aed_reboot_reason
 allow aee_aedv proc_aed_reboot_reason:file r_file_perms;
 
 # Purpose: Allow aee_aedv to write /proc/sys/vm/drop_caches
 allow aee_aedv proc_drop_caches:file rw_file_perms;
-
-# Purpose: Allow aee_aedv to search in proc_ppm
-allow aee_aedv proc_ppm:dir search;
-
-# Silent harmless spolicy
-dontaudit aee_aedv self:capability dac_override;
-dontaudit aee_aedv self:capability dac_read_search;

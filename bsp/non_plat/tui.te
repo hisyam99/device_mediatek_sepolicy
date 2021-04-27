@@ -1,3 +1,7 @@
+# ==============================================
+# MICROTRUST Policy Rule
+# ==============================================
+# Set a new domain
 type hal_tui_default, domain;
 
 # Set hal_tui_default as server domain of hal_tui
@@ -26,6 +30,7 @@ hal_client_domain(platform_app, hal_tui)
 
 # Access tui devices at all.
 allow hal_tui_default utr_tui_device:chr_file { open ioctl read write };
+
 
 # Allow to use shared memory for HAL PQ
 hal_client_domain(hal_tui_default, hal_allocator)

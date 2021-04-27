@@ -1,6 +1,9 @@
 # ==============================================
 # Policy File of /system/bin/thermald Executable File
 
+
+# Date : WK17.28
+# Operation : SQC
 # Purpose : for thermal management to shutdown the phone
 allow thermald proc_thermal:dir search;
 allow thermald proc_thermal:file { read getattr open write };
@@ -16,3 +19,4 @@ allow thermald proc_net:file r_file_perms;
 allow thermald self:netlink_route_socket { create setopt bind getattr write nlmsg_read read nlmsg_write };
 allow thermald devpts:chr_file rw_file_perms;
 allow thermald self:capability net_admin;
+

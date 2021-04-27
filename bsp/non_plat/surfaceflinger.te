@@ -1,3 +1,7 @@
+# ==============================================
+# MTK Policy Rule
+# ============
+
 # for debug purpose
 allow surfaceflinger self:capability { net_admin sys_nice };
 allow surfaceflinger self:netlink_socket { read bind create };
@@ -83,20 +87,28 @@ allow surfaceflinger debugfs_ged:dir { search };
 # FpsPolicyServer control refresh rate through dfrc
 allow surfaceflinger fpspolicy-server_service:service_manager add;
 
+# Date : WK17.23
+# Stage: O Migration, SQC
 # Purpose: Allow to use HAL PQ
 hal_client_domain(surfaceflinger, hal_pq)
 
+# Date : WK17.23
+# Stage: O Migration, SQC
 # Purpose: Allow to use shared memory for HAL PQ
 hal_client_domain(surfaceflinger, hal_allocator)
 
+# Date : WK17.43
+# Stage: O Migration, SQC
 # purpose: Allow to SF communicate with HAL DFPS
 hal_client_domain(surfaceflinger, hal_dfps)
 
 # TODO:: MTK need to remove later
-#not_full_treble(`
+# not_full_treble(`
 #    allow {domain -init -isolated_app -webview_zygote -hal_configstore_server -vendor_init} fpspolicy-server_service:service_manager find;
-#')
+# ')
 allow surfaceflinger mtk_dfrc_device:chr_file rw_file_perms;
 
+# Date: WK19.17
+# Stage: Q Migration, SQC
 # purpose: Allow to SF communicate with HAL GPU
 hal_client_domain(surfaceflinger, hal_gpu)

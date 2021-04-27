@@ -1,3 +1,7 @@
+# ==============================================
+# MICROTRUST Policy Rule
+# ==============================================
+# Set a new domain
 type hal_thh_default, domain;
 
 # Set hal_thh_default as server domain of hal_thh

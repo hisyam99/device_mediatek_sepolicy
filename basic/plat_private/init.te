@@ -1,3 +1,4 @@
+
 # insmod LKM under /odm or /vendor
 allow init self:capability sys_module;
 allow init system_file:system module_load;

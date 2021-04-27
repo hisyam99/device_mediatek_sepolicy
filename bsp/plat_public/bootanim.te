@@ -1,2 +1,8 @@
-#============= bootanim ==============
+# ==============================================
+# MTK Policy Rule
+# ============
+# Date : W1728
+
+# ============= bootanim ==============
 allow bootanim resourcecache_data_file:file read;
+

@@ -1,4 +1,11 @@
+# ==============================================
+# MTK Policy Rule
+# ============
+
+# Date : 2016/06/01
+# Operation: TEEI integration
 # Purpose: Microtrust teei_daemon service
+
 allow tee self:capability sys_module;
 allow tee teei_config_device:chr_file rw_file_perms;
 allow tee teei_client_device:chr_file { create setattr unlink rw_file_perms };
@@ -35,7 +42,6 @@ allow tee ut_keymaster_device:chr_file rw_file_perms;
 # allow load teei drm drivers
 allow init teei_client_device:chr_file rw_file_perms;
 allow kernel teei_client_device:chr_file rw_file_perms;
-allow tee kernel:system module_request;
 
 allow tee self:capability setuid;
 allow tee self:capability sys_rawio;

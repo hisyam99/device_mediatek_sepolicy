@@ -1,6 +1,16 @@
+# ==============================================
+# Policy File of /system/bin/met_log_d Executable File
+
+# ==============================================
+# Type Declaration
+# ==============================================
 type met_log_d_exec , system_file_type, exec_type, file_type;
+# New added for move to /system
 typeattribute met_log_d coredomain;
 
+# ==============================================
+# MTK Policy Rule
+# ==============================================
 init_daemon_domain(met_log_d)
 
 # Run /system/bin/met_log_d

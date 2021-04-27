@@ -1,7 +1,23 @@
+# ==============================================
+# Policy File of /vendor/bin/dmc_core Executable File
+
+# ==============================================
+# Type Declaration
+# ==============================================
+
 type dmc_core, domain;
 type dmc_core_exec ,exec_type, file_type, vendor_file_type;
 
+# ==============================================
+# MTK Policy Rule
+# ==============================================
+
 init_daemon_domain(dmc_core)
+
+# ==============================================
+# Date : W1920
+# Operation : Diagnostic framework Q migration
+# ==============================================
 
 # Purpose : allow dmc_core to start DMC and APM HIDL server
 hal_server_domain(dmc_core, mtk_hal_dmc)

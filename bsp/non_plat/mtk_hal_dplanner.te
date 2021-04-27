@@ -1,6 +1,12 @@
+# ==============================================
+# Type Declaration
+# ==============================================
 type mtk_hal_dplanner, domain;
 type mtk_hal_dplanner_exec, exec_type, file_type, vendor_file_type;
 
+# ==============================================
+# MTK Policy Rule
+# ==============================================
 init_daemon_domain(mtk_hal_dplanner)
 
 # Allow domain:mtk_hal_dplanner to use HWBinder IPC

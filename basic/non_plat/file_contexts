@@ -1,23 +1,30 @@
-############################
+# ==============================================
+# MTK Policy Rule
+# ==============================================
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 # A/B system
 /enableswap.sh u:object_r:rootfs:s0
 /factory_init\..* u:object_r:rootfs:s0
 /meta_init\..* u:object_r:rootfs:s0
 /multi_init\..* u:object_r:rootfs:s0
 
-#############################
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 # Custom files
 (/vendor)?/custom(/.*)?		u:object_r:custom_file:s0
 /dev/socket/netd    u:object_r:netd_socket:s0
 
-#############################
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 # Data files
-#
+# 
 /data/vendor/.tp(/.*)?  u:object_r:thermal_manager_data_file:s0
 /data/vendor_de/meta(/.*)?    u:object_r:mddb_data_file:s0
 /data/aee_exp(/.*)?  u:object_r:aee_exp_data_file:s0
 /data/vendor/aee_exp(/.*)?  u:object_r:aee_exp_vendor_file:s0
 /data/vendor/agps_supl(/.*)?    u:object_r:agpsd_data_file:s0
+# /data/mnl_flp(/.*)?    u:object_r:mnld_data_file:s0
+# /data/mnl_gfc(/.*)?    u:object_r:mnld_data_file:s0
 /data/vendor/gps(/.*)?   u:object_r:gps_data_file:s0
 /data/anr/SF_RTT(/.*)? u:object_r:sf_rtt_file:s0
 /data/vendor/ccci_cfg(/.*)? u:object_r:ccci_cfg_file:s0
@@ -25,21 +32,36 @@
 /data/vendor/flashless(/.*)? u:object_r:c2k_file:s0
 /data/core(/.*)? u:object_r:aee_core_data_file:s0
 /data/vendor/core(/.*)? u:object_r:aee_core_vendor_file:s0
+# /data/dontpanic(/.*)? u:object_r:dontpanic_data_file:s0
 /data/dumpsys(/.*)?    u:object_r:aee_dumpsys_data_file:s0
 /data/vendor/dumpsys(/.*)?    u:object_r:aee_dumpsys_vendor_file:s0
 /data/extmdl(/.*)? u:object_r:mdlog_data_file:s0
+# /data/http-proxy-cfg(/.*)? u:object_r:http_proxy_cfg_data_file:s0
 /data/log_temp(/.*)? u:object_r:logtemp_data_file:s0
+# /data/lost\+found(/.*)? u:object_r:lost_found_data_file:s0
 /data/mdlog(/.*)? u:object_r:mdlog_data_file:s0
 /data/mdl(/.*)? u:object_r:mdlog_data_file:s0
 /data/mdl3(/.*)? u:object_r:mdlog_data_file:s0
+# /data/mediaserver(/.*)? u:object_r:mediaserver_data_file:s0
+# /data/mediacodec(/.*)? u:object_r:mediacodec_data_file:s0
+# /data/.tp(/.*)? u:object_r:thermal_manager_data_file:s0
 /data/nfc_socket(/.*)? u:object_r:nfc_socket:s0
 /data/vendor/nfc_socket(/.*)? u:object_r:vendor_nfc_socket:s0
+# /data/nvram(/.*)? u:object_r:nvram_data_file:s0
+# /data/cct(/.*)? u:object_r:cct_data_file:s0
 /data/vendor/md3(/.*)? u:object_r:c2k_file:s0
+# /data/mal(/.*)? u:object_r:mal_data_file:s0
 /data/SF_dump(./*)? u:object_r:sf_bqdump_data_file:s0
 /data/data_tmpfs_log(/.*)? u:object_r:data_tmpfs_log_file:s0
 /data/vendor/data_tmpfs_log(/.*)? u:object_r:vendor_tmpfs_log_file:s0
+# /data/tmp_mnt/data_tmpfs_log(/.*)? u:object_r:data_tmpfs_log_file:s0
+# /data/tmp_mnt/vendor/data_tmpfs_log(/.*)? u:object_r:data_tmpfs_log_file:s0
+# /data/setkey.conf        u:object_r:ims_ipsec_data_file:s0
+# /data/setkey_bak.conf    u:object_r:ims_ipsec_data_file:s0
+# /data/setkey_latest.conf u:object_r:ims_ipsec_data_file:s0
 /data/vendor/audiohal(/.*)? u:object_r:mtk_audiohal_data_file:s0
 /data/vendor/powerhal(/.*)? u:object_r:mtk_powerhal_data_file:s0
+# /data/vendor/nfc(/.*)? u:object_r:nfc_data_file:s0
 /data/connsyslog(/.*)?  u:object_r:consyslog_data_file:s0
 /data/vendor/stp_dump(/.*)? u:object_r:stp_dump_data_file:s0
 /data/vendor/mediadrm(/.*)?      u:object_r:mediadrm_vendor_data_file:s0
@@ -48,12 +70,12 @@
 /data/vendor/vcodec(/.*)? u:object_r:vcodec_file:s0
 
 # Misc data
+# /data/misc/acdapi(/.*)? u:object_r:acdapi_data_file:s0
 /data/misc/mblog(/.*)? u:object_r:logmisc_data_file:s0
+# /data/misc/ppp(/.*)? u:object_r:ppp_data_file:s0
+# /data/misc/radvd(/.*)? u:object_r:radvd_data_file:s0
 /data/vendor/sensor(/.*)?         u:object_r:sensor_data_file:s0
-
-# NFC Data Labels
-/data/nfc(/.*)?		 u:object_r:nfc_data_file:s0
-/dev/nq-nci              u:object_r:nfc_device:s0
+# /data/misc/wpa_supplicant(/.*)? u:object_r:wpa_supplicant_data_file:s0
 
 # Wallpaper file for smartbook
 /data/system/users/[0-9]+/smartbook_wallpaper   u:object_r:wallpaper_file:s0
@@ -72,9 +94,9 @@
 # fat on nand image
 /fat(/.*)?  u:object_r:fon_image_data_file:s0
 
-##########################
+# # # # # # # # # # # # # # # # # # # # # # # # # # 
 # Devices
-#
+# 
 /dev/aal_als(/.*)? u:object_r:aal_als_device:s0
 /dev/accdet(/.*)? u:object_r:accdet_device:s0
 /dev/AD5820AF(/.*)? u:object_r:AD5820AF_device:s0
@@ -138,8 +160,10 @@
 /dev/fm(/.*)? u:object_r:fm_device:s0
 /dev/fw_log_wmt u:object_r:fw_log_wmt_device:s0
 /dev/fw_log_wifi u:object_r:fw_log_wifi_device:s0
+# /dev/gps(/.*)? u:object_r:gps_device:s0
 /dev/geofence(/.*)? u:object_r:geo_device:s0
 /dev/fw_log_gps u:object_r:fw_log_gps_device:s0
+# /dev/mt3337_gpsonly u:object_r:gps_device:s0
 /dev/hdmitx(/.*)? u:object_r:graphics_device:s0
 /dev/hid-keyboard(/.*)? u:object_r:hid_keyboard_device:s0
 /dev/ion(/.*)? u:object_r:ion_device:s0
@@ -353,20 +377,9 @@
 /dev/nebula-ipc-dev0 u:object_r:tee_device:s0
 /dev/mbim u:object_r:mbim_device:s0
 /dev/alarm(/.*)? u:object_r:alarm_device:s0
-/dev/socket/volte_ua(/.*)?	 u:object_r:volte_ua_socket:s0
-/dev/socket/volte_stack(/.*)?	 u:object_r:volte_stack_socket:s0
-/dev/socket/volte_imcb(/.*)?	 u:object_r:volte_imcb_socket:s0
-/dev/socket/wfca(/.*)?		 u:object_r:wfca_socket:s0
-/dev/SUB2AF(/.*)?    u:object_r:SUB2AF_device:s0
-/dev/vpud		         u:object_r:vpud_device:s0
-/dev/vcu		         u:object_r:vcu_device:s0
-
-# Audio socket
-/dev/socket/audio_hw_socket u:object_r:audio_socket:s0
-
-##########################
+# # # # # # # # # # # # # # # # # # # # # # # # # # 
 # Sensor common Devices Start
-#
+# 
 /dev/als_ps(/.*)? u:object_r:als_ps_device:s0
 /dev/barometer(/.*)? u:object_r:barometer_device:s0
 /dev/humidity(/.*)? u:object_r:humidity_device:s0
@@ -376,13 +389,13 @@
 /dev/msensor(/.*)? u:object_r:msensor_device:s0
 /dev/biometric(/.*)? u:object_r:biometric_device:s0
 /dev/sensorlist(/.*)? u:object_r:sensorlist_device:s0
-##########################
+# # # # # # # # # # # # # # # # # # # # # # # # # # 
 # Sensor Devices Start
-#
+# 
 /dev/m_batch_misc(/.*)? u:object_r:m_batch_misc_device:s0
-##########################
+# # # # # # # # # # # # # # # # # # # # # # # # # # 
 # Sensor bio Devices Start
-#
+# 
 /dev/m_als_misc(/.*)? u:object_r:m_als_misc_device:s0
 /dev/m_ps_misc(/.*)? u:object_r:m_ps_misc_device:s0
 /dev/m_baro_misc(/.*)? u:object_r:m_baro_misc_device:s0
@@ -502,9 +515,9 @@
 # W19.23 Q new feature - Userdata Checkpoint
 /dev/block/by-name/md_udc             u:object_r:metadata_block_device:s0
 
-#############################
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 # System files
-#
+# 
 /(system\/vendor|vendor)/bin/audiocmdservice_atci u:object_r:audiocmdservice_atci_exec:s0
 /(system\/vendor|vendor)/bin/stp_dump3 u:object_r:stp_dump3_exec:s0
 /(system\/vendor|vendor)/bin/wmt_launcher u:object_r:mtk_wmt_launcher_exec:s0
@@ -527,19 +540,21 @@
 /(system\/vendor|vendor)/bin/lbs_hidl_service u:object_r:lbs_hidl_service_exec:s0
 /(system\/vendor|vendor)/bin/meta_tst u:object_r:meta_tst_exec:s0
 /(system\/vendor|vendor)/bin/kisd u:object_r:kisd_exec:s0
-/(system\/vendor|vendor)/bin/hw/vendor\.microtrust\.hardware\.soter@1\.0-service	u:object_r:hal_wechat_exec:s0
+
 /(system\/vendor|vendor)/bin/fm_hidl_service u:object_r:fm_hidl_service_exec:s0
 /(system\/vendor|vendor)/bin/wlan_assistant u:object_r:wlan_assistant_exec:s0
 /(system\/vendor|vendor)/bin/wmt_loader u:object_r:wmt_loader_exec:s0
 /(system\/vendor|vendor)/bin/spm_loader u:object_r:spm_loader_exec:s0
 /(system\/vendor|vendor)/bin/ccci_mdinit u:object_r:ccci_mdinit_exec:s0
 /(system\/vendor|vendor)/bin/factory u:object_r:factory_exec:s0
+
 /(system\/vendor|vendor)/bin/mnld u:object_r:mnld_exec:s0
+# /system/bin/connsyslogger u:object_r:connsyslogger_exec:s0
+
 /(system\/vendor|vendor)/bin/biosensord_nvram u:object_r:biosensord_nvram_exec:s0
 /(system\/vendor|vendor)/bin/hw/android\.hardware\.bluetooth@1\.0-service-mediatek u:object_r:mtk_hal_bluetooth_exec:s0
 /(system\/vendor|vendor)/bin/hw/android\.hardware\.gnss@2\.0-service-mediatek u:object_r:mtk_hal_gnss_exec:s0
 /(system\/vendor|vendor)/bin/hw/android\.hardware\.audio@5\.0-service-mediatek u:object_r:mtk_hal_audio_exec:s0
-/(system\/vendor|vendor)/bin/hw/android\.hardware\.audio\.service\.mediatek u:object_r:mtk_hal_audio_exec:s0
 /(system\/vendor|vendor)/bin/hw/vendor\.mediatek\.hardware\.mtkpower@1\.0-service u:object_r:mtk_hal_power_exec:s0
 /(system\/vendor|vendor)/bin/hw/android\.hardware\.sensors@1\.0-service-mediatek u:object_r:mtk_hal_sensors_exec:s0
 /(system\/vendor|vendor)/bin/hw/android\.hardware\.sensors@2\.0-service-mediatek u:object_r:mtk_hal_sensors_exec:s0
@@ -551,22 +566,6 @@
 /(system\/vendor|vendor)/bin/hw/android\.hardware\.vibrator@1\.0-service-mediatek-lazy u:object_r:hal_vibrator_default_exec:s0
 /(system\/vendor|vendor)/bin/hw/camerahalserver u:object_r:mtk_hal_camera_exec:s0
 /(system\/vendor|vendor)/bin/hw/vendor\.mediatek\.hardware\.imsa@1\.0-service u:object_r:mtk_hal_imsa_exec:s0
-/(vendor|system/vendor)/bin/hw/vendor\.nxp\.hardware\.nfc@1\.0-service		u:object_r:vendor_hal_nfc_default_exec:s0
-/(vendor|system/vendor)/bin/hw/vendor\.nxp\.hardware\.nfc@1\.1-service		u:object_r:vendor_hal_nfc_default_exec:s0
-/system/bin/netutils-wrapper-1.0                 u:object_r:netutils_wrapper_exec_bin:s0
-/(system\/vendor|vendor)/bin/bip		 u:object_r:bip_exec:s0
-/(system\/vendor|vendor)/bin/volte_imsm_93	 u:object_r:volte_imsm_93_exec:s0
-/(system\/vendor|vendor)/bin/volte_stack	 u:object_r:volte_stack_exec:s0
-/(system\/vendor|vendor)/bin/volte_ua		 u:object_r:volte_ua_exec:s0
-/(system\/vendor|vendor)/bin/volte_imcb		 u:object_r:volte_imcb_exec:s0
-/(system\/vendor|vendor)/bin/epdg_wod		 u:object_r:epdg_wod_exec:s0
-/(system\/vendor|vendor)/bin/xcap		 u:object_r:xcap_exec:s0
-/(system\/vendor|vendor)/bin/wfca		 u:object_r:wfca_exec:s0
-/(system\/vendor|vendor)/bin/volte_md_status u:object_r:vendor_volte_md_status_exec:s0
-/(system\/vendor|vendor)/bin/toybox_vendor   u:object_r:vendor_toolbox_exec:s0
-/(system\/vendor|vendor)/bin/stroke  u:object_r:vendor_stroke_exec:s0
-/(system\/vendor|vendor)/bin/sh   u:object_r:vendor_shell_exec:s0
-/(system\/vendor|vendor)/bin/vpud  u:object_r:vpud_native_exec:s0
 
 # Google Trusty system files
 /(vendor|system\/vendor)/bin/hw/android\.hardware\.keymaster@3\.0-service\.trusty u:object_r:hal_keymaster_default_exec:s0
@@ -575,13 +574,10 @@
 # PQ hal
 /(system\/vendor|vendor)/bin/hw/vendor\.mediatek\.hardware\.pq@2\.2-service u:object_r:mtk_hal_pq_exec:s0
 # MMS hal
-/(system\/vendor|vendor)/bin/hw/vendor\.mediatek\.hardware\.mms@1\.3-service		u:object_r:mtk_hal_mms_exec:s0
-/(system\/vendor|vendor)/bin/hw/vendor\.mediatek\.hardware\.mms@1\.3-service-lazy	u:object_r:mtk_hal_mms_exec:s0
 /(system\/vendor|vendor)/bin/hw/vendor\.mediatek\.hardware\.mms@1\.5-service u:object_r:mtk_hal_mms_exec:s0
 # Keymaster Attestation Hal
 /(system\/vendor|vendor)/bin/hw/vendor\.mediatek\.hardware\.keymaster_attestation@1\.1-service u:object_r:hal_keymaster_attestation_exec:s0
-# ST NFC hidl service
-/(system\/vendor|vendor)/bin/hw/android\.hardware\.nfc@1\.1-service-st u:object_r:hal_nfc_default_exec:s0
+# ST NFC 1.2 hidl service
 /(system\/vendor|vendor)/bin/hw/android\.hardware\.nfc@1\.2-service-st u:object_r:hal_nfc_default_exec:s0
 /(system\/vendor|vendor)/bin/hw/android\.hardware\.secure_element@1\.0-service-st54spi u:object_r:st54spi_hal_secure_element_exec:s0
 # MTK Wifi Hal
@@ -595,18 +591,16 @@
 # gpu hal
 /(system\/vendor|vendor)/bin/hw/vendor\.mediatek\.hardware\.gpu@1\.0-service u:object_r:mtk_hal_gpu_exec:s0
 
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+# System/bin files
+
 # hidl process merging
 /(system\/vendor|vendor)/bin/hw/merged_hal_service          u:object_r:merged_hal_service_exec:s0
 
-###############################################
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 # same-process HAL files and their dependencies
-#
-/vendor/lib/android\.hidl\.base@1\.0\.so u:object_r:same_process_hal_file:s0
-/vendor/lib/android\.hidl\.manager@1\.0\.so u:object_r:same_process_hal_file:s0
-
-/vendor/lib/android\.hardware\.audio\.common-util\.so u:object_r:same_process_hal_file:s0
-/vendor/lib/android\.hardware\.audio\.common@5\.0-util\.so u:object_r:same_process_hal_file:s0
-
+# 
 /vendor/lib(64)?/hw/gralloc\.mt[0-9]+[a-z]*\.so   u:object_r:same_process_hal_file:s0
 /vendor/lib(64)?/hw/vulkan\.mt[0-9]+\.so     u:object_r:same_process_hal_file:s0
 
@@ -657,356 +651,44 @@
 
 /vendor/bin/hw/modemdbfilter_service u:object_r:modemdbfilter_service_exec:s0
 
+# Date: 2018/07/06
 # Purpose for same-process HAL files and their dependencies: libGLES_mali.so need libm4u.so on mali GPU.
 /vendor/lib(64)?/libm4u\.so   u:object_r:same_process_hal_file:s0
 
+# Date: 2018/12/04
 # Purpose: Neuron runtime API and the dependencies
 /vendor/lib(64)?/libneuron_platform.so u:object_r:same_process_hal_file:s0
 /vendor/lib(64)?/libion_mtk.so u:object_r:same_process_hal_file:s0
 /vendor/lib(64)?/mtk_cache.so u:object_r:same_process_hal_file:s0
 /vendor/lib(64)?/libvpu.so u:object_r:same_process_hal_file:s0
 
+# Date: 2019/01/21
 # Purpose: OpenCL feature requirments
 /vendor/lib(64)?/libOpenCL\.so                                  u:object_r:same_process_hal_file:s0
-
-# Purpose: Allow Some Apps To Read Blobs
-/vendor/lib/AVCSecureVdecCA\.so                                                 u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_gc2375afmipiraw_Flash_Capture\.so                         u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_gc2375afmipiraw_Flash_Preview_PF\.so                      u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_gc2375afmipiraw_HDR_Capture\.so                           u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_gc2375afmipiraw_MFSR_Capture\.so                          u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_gc2375afmipiraw_Reserved\.so                              u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_gc2375afmipiraw_Scene_Capture.so                          u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_gc2375afmipiraw_Scene_Preview\.so                         u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_gc2375afmipiraw_Video_Preview\.so                         u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_gc2375afmipiraw_Zoom_Preview\.so                          u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_gc2375alphamipiraw_Reserved\.so                           u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_gc2375alphamipiraw_Scene_Capture\.so                      u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_gc2375alphamipiraw_Scene_Preview\.so                      u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_gc2375betamipiraw_Reserved\.so                            u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_gc2375betamipiraw_Scene_Capture\.so                       u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_gc2375betamipiraw_Scene_Preview\.so                       u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_gc5035mipiraw_Reserved\.so                                u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_gc5035mipiraw_Scene_Capture\.so                           u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_gc5035mipiraw_Scene_Preview\.so                           u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_ov02a10afmipiraw_Flash_Capture\.so                        u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_ov02a10afmipiraw_Flash_Preview_PF\.so                     u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_ov02a10afmipiraw_HDR_Capture\.so                          u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_ov02a10afmipiraw_MFSR_Capture\.so                         u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_ov02a10afmipiraw_Reserved\.so                             u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_ov02a10afmipiraw_Scene_Capture\.so                        u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_ov02a10afmipiraw_Scene_Preview\.so                        u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_ov02a10afmipiraw_Video_Preview\.so                        u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_ov02a10afmipiraw_Zoom_Preview\.so                         u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_ov02a10alphamipiraw_Reserved\.so                          u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_ov02a10alphamipiraw_Scene_Capture\.so                     u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_ov02a10alphamipiraw_Scene_Preview\.so                     u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_ov02a10betamipiraw_Reserved\.so                           u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_ov02a10betamipiraw_Scene_Capture\.so                      u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_ov02a10betamipiraw_Scene_Preview\.so                      u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_ov8856ofilmmipiraw_Face_Capture\.so                       u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_ov8856ofilmmipiraw_Flash_Capture\.so                      u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_ov8856ofilmmipiraw_Flash_Preview_PF\.so                   u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_ov8856ofilmmipiraw_HDR_Capture\.so                        u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_ov8856ofilmmipiraw_Reserved\.so                           u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_ov8856ofilmmipiraw_Scene_Capture\.so                      u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_ov8856ofilmmipiraw_Scene_Preview\.so                      u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_ov8856ofilmmipiraw_Video720P_Face_Preview\.so             u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_ov8856ofilmmipiraw_Video720P_Preview\.so                  u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_ov8856ofilmmipiraw_Video_Face_Preview\.so                 u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_ov8856ofilmmipiraw_Video_Face_Preview_EIS\.so             u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_ov8856ofilmmipiraw_Video_Preview\.so                      u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_ov8856ofilmmipiraw_Video_Preview_EIS\.so                  u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_ov8856ofilmmipiraw_Zoom_Preview\.so                       u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_ov8856ofilmmipiraw_Zoom_Video\.so                         u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_ov8856ofilmmipiraw_Zoom_Video720P\.so                     u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_ov8856ofilmmipiraw_Zoom_Video720P_2\.so                   u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_ov8856ofilmmipiraw_Zoom_Video_2\.so                       u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_ov8856ofilmmipiraw_Zoom_Video_EIS\.so                     u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_ov8856ofilmmipiraw_Zoom_Video_EIS_2\.so                   u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_ov8856sunnymipiraw_Face_Capture\.so                       u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_ov8856sunnymipiraw_Flash_Capture\.so                      u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_ov8856sunnymipiraw_Flash_Preview_PF\.so                   u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_ov8856sunnymipiraw_HDR_Capture\.so                        u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_ov8856sunnymipiraw_Reserved\.so                           u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_ov8856sunnymipiraw_Scene_Capture\.so                      u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_ov8856sunnymipiraw_Scene_Preview\.so                      u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_ov8856sunnymipiraw_Video720P_Face_Preview\.so             u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_ov8856sunnymipiraw_Video720P_Preview\.so                  u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_ov8856sunnymipiraw_Video_Face_Preview\.so                 u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_ov8856sunnymipiraw_Video_Face_Preview_EIS\.so             u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_ov8856sunnymipiraw_Video_Preview\.so                      u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_ov8856sunnymipiraw_Video_Preview_EIS\.so                  u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_ov8856sunnymipiraw_Zoom_Preview\.so                       u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_ov8856sunnymipiraw_Zoom_Video\.so                         u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_ov8856sunnymipiraw_Zoom_Video720P\.so                     u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_ov8856sunnymipiraw_Zoom_Video720P_2\.so                   u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_ov8856sunnymipiraw_Zoom_Video_2\.so                       u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_ov8856sunnymipiraw_Zoom_Video_EIS\.so                     u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_ov8856sunnymipiraw_Zoom_Video_EIS_2\.so                   u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5k3t1ofilmmipiraw_3rd_Capture\.so                        u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5k3t1ofilmmipiraw_3rd_Preview\.so                        u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5k3t1ofilmmipiraw_AutoHDR_Capture\.so                    u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5k3t1ofilmmipiraw_FaceUnlock_Capture\.so                 u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5k3t1ofilmmipiraw_Face_Capture\.so                       u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5k3t1ofilmmipiraw_Portrait_Preview\.so                   u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5k3t1ofilmmipiraw_QQ_Capture_1080P\.so                   u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5k3t1ofilmmipiraw_QQ_Capture_480P\.so                    u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5k3t1ofilmmipiraw_Reserved\.so                           u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5k3t1ofilmmipiraw_Scene_Capture\.so                      u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5k3t1ofilmmipiraw_Scene_Preview\.so                      u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5k3t1ofilmmipiraw_Scene_Video\.so                        u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5k3t1ofilmmipiraw_YUV_Reprocess\.so                      u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5k3t1sunnymipiraw_3rd_Capture\.so                        u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5k3t1sunnymipiraw_3rd_Preview\.so                        u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5k3t1sunnymipiraw_AutoHDR_Capture\.so                    u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5k3t1sunnymipiraw_FaceUnlock_Capture\.so                 u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5k3t1sunnymipiraw_Face_Capture\.so                       u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5k3t1sunnymipiraw_Portrait_Preview\.so                   u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5k3t1sunnymipiraw_QQ_Capture_1080P\.so                   u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5k3t1sunnymipiraw_QQ_Capture_480P\.so                    u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5k3t1sunnymipiraw_Reserved\.so                           u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5k3t1sunnymipiraw_Scene_Capture\.so                      u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5k3t1sunnymipiraw_Scene_Preview\.so                      u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5k3t1sunnymipiraw_Scene_Video\.so                        u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5k3t1sunnymipiraw_YUV_Reprocess\.so                      u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1ofilmmipiraw_Face_Capture\.so                       u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1ofilmmipiraw_Face_Capture_64\.so                    u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1ofilmmipiraw_Face_Preview\.so                       u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1ofilmmipiraw_Flash_Capture\.so                      u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1ofilmmipiraw_Flash_Preview_PF\.so                   u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1ofilmmipiraw_HDR_Scene_Capture\.so                  u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1ofilmmipiraw_HDR_Scene_Capture_Zoom1\.so            u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1ofilmmipiraw_HDR_Scene_Capture_Zoom2\.so            u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1ofilmmipiraw_MFSR_Scene_Capture\.so                 u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1ofilmmipiraw_MFSR_Scene_Capture_Zoom1\.so           u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1ofilmmipiraw_MFSR_Scene_Capture_Zoom2\.so           u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1ofilmmipiraw_portrait_capture_full\.so              u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1ofilmmipiraw_portrait_preview_full\.so              u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1ofilmmipiraw_QQ_Capture_ChatMode\.so                u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1ofilmmipiraw_Reserved\.so                           u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1ofilmmipiraw_Scene_Capture\.so                      u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1ofilmmipiraw_Scene_Capture_64\.so                   u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1ofilmmipiraw_Scene_Preview\.so                      u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1ofilmmipiraw_Scene_Preview_Zoom1\.so                u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1ofilmmipiraw_Scene_Preview_Zoom2\.so                u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1ofilmmipiraw_SuperNS_Face_Preview\.so               u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1ofilmmipiraw_SuperNS_Scene_Capture\.so              u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1ofilmmipiraw_SuperNS_Scene_Capture_Zoom1\.so        u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1ofilmmipiraw_SuperNS_Scene_Capture_Zoom2\.so        u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1ofilmmipiraw_SuperNS_Scene_Preview\.so              u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1ofilmmipiraw_Torch_Capture\.so                      u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1ofilmmipiraw_Video\.so                              u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1ofilmmipiraw_Video_1080P_60fps\.so                  u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1ofilmmipiraw_Video_1080P_EIS\.so                    u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1ofilmmipiraw_Video_480P\.so                         u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1ofilmmipiraw_Video_4K\.so                           u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1ofilmmipiraw_Video_4K_Zoom1\.so                     u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1ofilmmipiraw_Video_4K_Zoom2\.so                     u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1ofilmmipiraw_Video_720P\.so                         u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1ofilmmipiraw_Video_720P_1080P_120fps\.so            u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1ofilmmipiraw_Video_720P_240fps\.so                  u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1ofilmmipiraw_Video_720P_EIS\.so                     u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1ofilmmipiraw_Video_EIS_Default\.so                  u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1ofilmmipiraw_Video_Zoom1\.so                        u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1ofilmmipiraw_Video_Zoom2\.so                        u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1spmipiraw_AutoHDR_Capture\.so                       u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1spmipiraw_AutoHDR_Preview\.so                       u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1spmipiraw_AutoHDR_Video\.so                         u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1spmipiraw_Face_Capture\.so                          u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1spmipiraw_Flash_Capture\.so                         u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1spmipiraw_Flash_HDR_Capture\.so                     u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1spmipiraw_HDR_Capture\.so                           u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1spmipiraw_HDR_Preview\.so                           u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1spmipiraw_HDR_Video\.so                             u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1spmipiraw_N3D_Capture\.so                           u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1spmipiraw_N3D_Preview\.so                           u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1spmipiraw_N3D_Video\.so                             u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1spmipiraw_Reserved\.so                              u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1spmipiraw_Scene_Capture\.so                         u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1spmipiraw_Scene_Capture_4cell\.so                   u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1spmipiraw_Scene_Preview\.so                         u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1spmipiraw_Scene_Preview_4k\.so                      u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1spmipiraw_Scene_Preview_ZSD_Flash\.so               u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1spmipiraw_Video_1080\.so                            u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1spmipiraw_Video_4k\.so                              u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1sunnymipiraw_Face_Capture\.so                       u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1sunnymipiraw_Face_Capture_64\.so                    u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1sunnymipiraw_Face_Preview\.so                       u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1sunnymipiraw_Flash_Capture\.so                      u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1sunnymipiraw_Flash_Preview_PF\.so                   u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1sunnymipiraw_HDR_Scene_Capture\.so                  u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1sunnymipiraw_HDR_Scene_Capture_Zoom1\.so            u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1sunnymipiraw_HDR_Scene_Capture_Zoom2\.so            u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1sunnymipiraw_MFSR_Scene_Capture\.so                 u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1sunnymipiraw_MFSR_Scene_Capture_Zoom1\.so           u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1sunnymipiraw_MFSR_Scene_Capture_Zoom2\.so           u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1sunnymipiraw_portrait_capture_full\.so              u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1sunnymipiraw_portrait_preview_full\.so              u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1sunnymipiraw_QQ_Capture_ChatMode\.so                u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1sunnymipiraw_Reserved\.so                           u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1sunnymipiraw_Scene_Capture\.so                      u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1sunnymipiraw_Scene_Capture_64\.so                   u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1sunnymipiraw_Scene_Preview\.so                      u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1sunnymipiraw_Scene_Preview_Zoom1\.so                u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1sunnymipiraw_Scene_Preview_Zoom2\.so                u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1sunnymipiraw_SuperNS_Face_Preview\.so               u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1sunnymipiraw_SuperNS_Scene_Capture\.so              u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1sunnymipiraw_SuperNS_Scene_Capture_Zoom1\.so        u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1sunnymipiraw_SuperNS_Scene_Capture_Zoom2\.so        u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1sunnymipiraw_SuperNS_Scene_Preview\.so              u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1sunnymipiraw_Torch_Capture\.so                      u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1sunnymipiraw_Video\.so                              u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1sunnymipiraw_Video_1080P_60fps\.so                  u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1sunnymipiraw_Video_1080P_EIS\.so                    u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1sunnymipiraw_Video_480P\.so                         u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1sunnymipiraw_Video_4K\.so                           u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1sunnymipiraw_Video_4K_Zoom1\.so                     u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1sunnymipiraw_Video_4K_Zoom2\.so                     u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1sunnymipiraw_Video_720P\.so                         u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1sunnymipiraw_Video_720P_1080P_120fps\.so            u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1sunnymipiraw_Video_720P_240fps\.so                  u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1sunnymipiraw_Video_720P_EIS\.so                     u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1sunnymipiraw_Video_EIS_Default\.so                  u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1sunnymipiraw_Video_Zoom1\.so                        u:object_r:same_process_hal_file:s0
-/vendor/lib/libCamera_s5kgw1sunnymipiraw_Video_Zoom2\.so                        u:object_r:same_process_hal_file:s0
-/vendor/lib/libSonyIMX230PdafLibrary\.so                                        u:object_r:same_process_hal_file:s0
-/vendor/lib/libSonyIMX230PdafLibraryWrapper\.so                                 u:object_r:same_process_hal_file:s0
-/vendor/lib/libSonyIMX338PdafLibrary\.so                                        u:object_r:same_process_hal_file:s0
-/vendor/lib/libSonyIMX338PdafLibraryWrapper\.so                                 u:object_r:same_process_hal_file:s0
-/vendor/lib/libSonyIMX386PdafLibrary\.so                                        u:object_r:same_process_hal_file:s0
-/vendor/lib/libSonyIMX386PdafLibraryWrapper\.so                                 u:object_r:same_process_hal_file:s0
-/vendor/lib/libSonyIMX519PdafLibrary\.so                                        u:object_r:same_process_hal_file:s0
-/vendor/lib/libSonyIMX519PdafLibraryWrapper\.so                                 u:object_r:same_process_hal_file:s0
-/vendor/lib/gc2375af_mipi_raw_IdxMgr\.so                                        u:object_r:same_process_hal_file:s0
-/vendor/lib/gc2375af_mipi_raw_tuning\.so                                        u:object_r:same_process_hal_file:s0
-/vendor/lib/gc2375alpha_mipi_raw_IdxMgr\.so                                     u:object_r:same_process_hal_file:s0
-/vendor/lib/gc2375alpha_mipi_raw_tuning\.so                                     u:object_r:same_process_hal_file:s0
-/vendor/lib/gc2375beta_mipi_raw_IdxMgr\.so                                      u:object_r:same_process_hal_file:s0
-/vendor/lib/gc2375beta_mipi_raw_tuning\.so                                      u:object_r:same_process_hal_file:s0
-/vendor/lib/gc5035_mipi_raw_IdxMgr\.so                                          u:object_r:same_process_hal_file:s0
-/vendor/lib/gc5035_mipi_raw_tuning\.so                                          u:object_r:same_process_hal_file:s0
-/vendor/lib/ov02a10af_mipi_raw_IdxMgr\.so                                       u:object_r:same_process_hal_file:s0
-/vendor/lib/ov02a10af_mipi_raw_tuning\.so                                       u:object_r:same_process_hal_file:s0
-/vendor/lib/ov02a10alpha_mipi_raw_IdxMgr\.so                                    u:object_r:same_process_hal_file:s0
-/vendor/lib/ov02a10alpha_mipi_raw_tuning\.so                                    u:object_r:same_process_hal_file:s0
-/vendor/lib/ov02a10beta_mipi_raw_IdxMgr\.so                                     u:object_r:same_process_hal_file:s0
-/vendor/lib/ov02a10beta_mipi_raw_tuning\.so                                     u:object_r:same_process_hal_file:s0
-/vendor/lib/ov8856ofilm_mipi_raw_IdxMgr\.so                                     u:object_r:same_process_hal_file:s0
-/vendor/lib/ov8856ofilm_mipi_raw_tuning\.so                                     u:object_r:same_process_hal_file:s0
-/vendor/lib/ov8856sunny_mipi_raw_IdxMgr\.so                                     u:object_r:same_process_hal_file:s0
-/vendor/lib/ov8856sunny_mipi_raw_tuning\.so                                     u:object_r:same_process_hal_file:s0
-/vendor/lib/s5k3t1ofilm_mipi_raw_IdxMgr\.so                                     u:object_r:same_process_hal_file:s0
-/vendor/lib/s5k3t1ofilm_mipi_raw_tuning\.so                                     u:object_r:same_process_hal_file:s0
-/vendor/lib/s5k3t1sunny_mipi_raw_IdxMgr\.so                                     u:object_r:same_process_hal_file:s0
-/vendor/lib/s5k3t1sunny_mipi_raw_tuning\.so                                     u:object_r:same_process_hal_file:s0
-/vendor/lib/s5kgw1ofilm_mipi_raw_IdxMgr\.so                                     u:object_r:same_process_hal_file:s0
-/vendor/lib/s5kgw1ofilm_mipi_raw_tuning\.so                                     u:object_r:same_process_hal_file:s0
-/vendor/lib/s5kgw1sp_mipi_raw_IdxMgr\.so                                        u:object_r:same_process_hal_file:s0
-/vendor/lib/s5kgw1sp_mipi_raw_tuning\.so                                        u:object_r:same_process_hal_file:s0
-/vendor/lib/s5kgw1sunny_mipi_raw_IdxMgr\.so                                     u:object_r:same_process_hal_file:s0
-/vendor/lib/s5kgw1sunny_mipi_raw_tuning\.so                                     u:object_r:same_process_hal_file:s0
-/vendor/lib/jcos_client\.so                                                     u:object_r:same_process_hal_file:s0
-/vendor/lib/lib3a\.ae\.core\.so                                                 u:object_r:same_process_hal_file:s0
-/vendor/lib/lib3a\.awb\.core\.so                                                u:object_r:same_process_hal_file:s0
-/vendor/lib/lib3a\.ae\.so                                                       u:object_r:same_process_hal_file:s0
-/vendor/lib/lib3a\.af\.core\.so                                                 u:object_r:same_process_hal_file:s0
-/vendor/lib/lib3a\.af\.so                                                       u:object_r:same_process_hal_file:s0
-/vendor/lib/lib3a\.awb\.so                                                      u:object_r:same_process_hal_file:s0
-/vendor/lib/lib3a\.ccudrv\.so                                                   u:object_r:same_process_hal_file:s0
-/vendor/lib/lib3a\.ccuif\.so                                                    u:object_r:same_process_hal_file:s0
-/vendor/lib/lib3a\.flash\.so                                                    u:object_r:same_process_hal_file:s0
-/vendor/lib/lib3a\.gma\.so                                                      u:object_r:same_process_hal_file:s0
-/vendor/lib/lib3a\.lce\.so                                                      u:object_r:same_process_hal_file:s0
-/vendor/lib/lib3a\.log\.so                                                      u:object_r:same_process_hal_file:s0
-/vendor/lib/lib3a\.n3d3a\.so                                                    u:object_r:same_process_hal_file:s0
-/vendor/lib/libBnMtkCodec\.so                                                   u:object_r:same_process_hal_file:s0
-/vendor/lib/libDR\.so                                                           u:object_r:same_process_hal_file:s0
-/vendor/lib/libHEVCdec_sa\.ca7\.android\.so                                     u:object_r:same_process_hal_file:s0
-/vendor/lib/libJpgEncPipe\.so                                                   u:object_r:same_process_hal_file:s0
-/vendor/lib/libMtkOmxAdpcmDec\.so                                               u:object_r:same_process_hal_file:s0
-/vendor/lib/libMtkOmxAlacDec\.so                                                u:object_r:same_process_hal_file:s0
-/vendor/lib/libMtkOmxApeDec\.so                                                 u:object_r:same_process_hal_file:s0
-/vendor/lib/libMtkOmxCore\.so                                                   u:object_r:same_process_hal_file:s0
-/vendor/lib/libMtkOmxG711Dec\.so                                                u:object_r:same_process_hal_file:s0
-/vendor/lib/libMtkOmxGsmDec\.so                                                 u:object_r:same_process_hal_file:s0
-/vendor/lib/libMtkOmxMp3Dec\.so                                                 u:object_r:same_process_hal_file:s0
-/vendor/lib/libMtkOmxVdecEx\.so                                                 u:object_r:same_process_hal_file:s0
-/vendor/lib/libMtkOmxVenc\.so                                                   u:object_r:same_process_hal_file:s0
-/vendor/lib/libMtkSpeechEnh\.so                                                 u:object_r:same_process_hal_file:s0
-/vendor/lib/lib_iir\.so                                                         u:object_r:same_process_hal_file:s0
-/vendor/lib/lib_smartpa_nxp_ap\.so                                              u:object_r:same_process_hal_file:s0
-/vendor/lib/lib_speech_enh\.so                                                  u:object_r:same_process_hal_file:s0
-/vendor/lib/libaal_cust\.so                                                     u:object_r:same_process_hal_file:s0
-/vendor/lib/libaal_mtk\.so                                                      u:object_r:same_process_hal_file:s0
-/vendor/lib/libaalservice\.so                                                   u:object_r:same_process_hal_file:s0
-/vendor/lib/libaedv\.so                                                         u:object_r:same_process_hal_file:s0
-/vendor/lib/libakm\.so                                                          u:object_r:same_process_hal_file:s0
-/vendor/lib/libalsautils\.so                                                    u:object_r:same_process_hal_file:s0
-/vendor/lib/libarcsoft_dualcam_refocus\.so                                      u:object_r:same_process_hal_file:s0
-/vendor/lib/libaudio_param_parser-vnd\.so                                       u:object_r:same_process_hal_file:s0
-/vendor/lib/libaudiocompensationfilter_vendor\.so                               u:object_r:same_process_hal_file:s0
-/vendor/lib/libaudiocompensationfilterc\.so                                     u:object_r:same_process_hal_file:s0
-/vendor/lib(64)?/vendor\.mediatek\.hardware\.videotelephony@1\.0\.so            u:object_r:same_process_hal_file:s0
-/vendor/lib(64)?/vendor\.mediatek\.hardware\.camera\.atms@1\.0\.so              u:object_r:same_process_hal_file:s0
-/vendor/lib(64)?/nfc_nci\.nqx\.default\.hw\.so                                  u:object_r:same_process_hal_file:s0
-/vendor/lib(64)?/libTEECommon\.so                                               u:object_r:same_process_hal_file:s0
-/vendor/lib(64)?/libtextclassifier_hash\.so                                     u:object_r:same_process_hal_file:s0
-/vendor/lib(64)?/libmpbase\.so                                                  u:object_r:same_process_hal_file:s0
-/vendor/lib(64)?/libperfctl_vendor\.so                                          u:object_r:same_process_hal_file:s0
-/vendor/lib(64)?/vendor\.display\.config@1\.0\.so               u:object_r:same_process_hal_file:s0
-/vendor/lib(64)?/vendor\.display\.config@1\.1\.so               u:object_r:same_process_hal_file:s0
-/vendor/lib(64)?/vendor\.display\.config@1\.2\.so               u:object_r:same_process_hal_file:s0
-/vendor/lib(64)?/vendor\.display\.config@1\.3\.so               u:object_r:same_process_hal_file:s0
-/vendor/lib(64)?/vendor\.display\.config@1\.4\.so               u:object_r:same_process_hal_file:s0
-/vendor/lib(64)?/vendor\.display\.config@1\.5\.so               u:object_r:same_process_hal_file:s0
-/vendor/lib(64)?/vendor\.display\.config@1\.6\.so               u:object_r:same_process_hal_file:s0
-/vendor/lib(64)?/vendor\.display\.config@1\.7\.so               u:object_r:same_process_hal_file:s0
-/vendor/lib(64)?/vendor\.display\.config@1\.8\.so               u:object_r:same_process_hal_file:s0
-/vendor/lib(64)?/vendor\.display\.config@1\.9\.so               u:object_r:same_process_hal_file:s0
 
 # MRDUMP
 /dev/block/platform/bootdevice/by-name/mrdump(/.*)? u:object_r:mrdump_device:s0
 
+# Date: 2019/07/16
 # hdmi hal
 /(system\/vendor|vendor)/bin/hw/vendor\.mediatek\.hardware\.hdmi@1\.0-service u:object_r:mtk_hal_hdmi_exec:s0
 
 # Widevine drm hal(include lazy hal)
 /vendor/bin/hw/android\.hardware\.drm@1\.2-service\.widevine           u:object_r:hal_drm_widevine_exec:s0
 /vendor/bin/hw/android\.hardware\.drm@1\.2-service-lazy\.widevine      u:object_r:hal_drm_widevine_exec:s0
-/vendor/bin/hw/android\.hardware\.drm@1\.3-service\.widevine           u:object_r:hal_drm_widevine_exec:s0
 # Cleaarkey hal(include lazy hal)
 /vendor/bin/hw/android\.hardware\.drm@1\.2-service\.clearkey           u:object_r:hal_drm_clearkey_exec:s0
 /vendor/bin/hw/android\.hardware\.drm@1\.2-service-lazy\.clearkey      u:object_r:hal_drm_clearkey_exec:s0
-/vendor/bin/hw/android\.hardware\.drm@1\.3-service\.clearkey           u:object_r:hal_drm_clearkey_exec:s0
 
+# Date: 2019/09/05
 # Purpose: GiFT related libraries
 /vendor/lib(64)?/libDefaultFpsActor.so  u:object_r:same_process_hal_file:s0
 /vendor/lib(64)?/libNoFpsActor.so       u:object_r:same_process_hal_file:s0
 /vendor/lib(64)?/libFrameRecord.so      u:object_r:same_process_hal_file:s0
 
+# Date : 2019/10/28
 # Purpose : move these contexts from plat_private/file_contexts
 /(system\/vendor|vendor)/bin/aee_aedv u:object_r:aee_aedv_exec:s0
 /(system\/vendor|vendor)/bin/aee_aedv64 u:object_r:aee_aedv_exec:s0
 /vendor/bin/aeev  u:object_r:aee_aedv_exec:s0
 
-# Sys files
-/sys/class/thermal(/.*)? u:object_r:sysfs_thermal:s0
-/sys/bus/platform/drivers(/.*)? u:object_r:sysfs_bus:s0
-/sys/bus/i2c/drivers(/.*)? u:object_r:sysfs_bus:s0
-/sys/bus/usb/drivers/usb(/.*)? u:object_r:sysfs_bus:s0
-/sys/class/block(/.*)? u:object_r:sysfs_class:s0
-/sys/class/regulator(/.*)? u:object_r:sysfs_class:s0
-/sys/devices/platform/bootdevice/host0/target0:0:0/0:0:0:0/model(/.*)? u:object_r:sysfs_mmcblk:s0
-/sys/devices/platform/11016000.i2c5/i2c-5/5-0034/mt6360_pmu_rgbled.4.auto/leds(/.*)?	   u:object_r:sysfs_leds:s0
-/sys/devices/platform/leds-mt65xx/leds/lcd-backlight(/.*)?   u:object_r:sysfs_leds:s0
-/sys/devices/platform/1101b000.i2c8/i2c-8/8-001d/power_supply/wireless(/.*)?  u:object_r:sysfs_battery_supply:s0
-/sys/devices/platform/1101b000.i2c8/i2c-8/8-001d/power_supply/parallel(/.*)?  u:object_r:sysfs_battery_supply:s0
-/sys/devices/platform/11016000.i2c5/i2c-5/5-004e/tcpc/type_c_port0(/.*)?   u:object_r:sysfs_battery_supply:s0
-/sys/devices/platform/mt_charger/power_supply(/.*)? u:object_r:sysfs_usb_supply:s0
-/sys/devices/platform/battery(/.*)?  u:object_r:sysfs_battery_supply:s0
-/sys/devices/platform/ts_novatek(/.*)?  u:object_r:sysfsts_novatek:s0
-/sys/devices/platform/CONNAC/net/wlan1(/.*)?  u:object_r:sysfs_net:s0
-/sys/firmware/devicetree/base/model(/.*)?  u:object_r:sysfs_device_tree_model:s0
-/sys/bus/platform/drivers/emi_ctrl(/.*)?  u:object_r:sysfs_emi_ctrl:s0
-/sys/devices/platform/mtkfb(/.*)?  u:object_r:sysfs_mtkfb:s0

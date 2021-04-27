@@ -1,14 +1,7 @@
 type mtk_hal_neuralnetworks, domain;
-type mtk_hal_neuralnetworks_exec, exec_type, vendor_file_type, file_type;
-
-init_daemon_domain(mtk_hal_neuralnetworks)
-
 hal_server_domain(mtk_hal_neuralnetworks, hal_neuralnetworks)
-hal_client_domain(mtk_hal_neuralnetworks, hal_graphics_allocator)
-
-add_hwservice(mtk_hal_neuralnetworks, hal_neuralnetworks_hwservice)
-allow mtk_hal_neuralnetworks hal_neuralnetworks_hwservice:hwservice_manager find;
-allow mtk_hal_neuralnetworks hidl_base_hwservice:hwservice_manager add;
+type mtk_hal_neuralnetworks_exec, exec_type, vendor_file_type, file_type;
+init_daemon_domain(mtk_hal_neuralnetworks)
 allow mtk_hal_neuralnetworks ion_device:chr_file r_file_perms;
 allow mtk_hal_neuralnetworks debugfs_ion:dir r_dir_perms;
 allow mtk_hal_neuralnetworks vpu_device:chr_file rw_file_perms;
@@ -28,8 +21,6 @@ allow mtk_hal_neuralnetworks proc_zoneinfo:file r_file_perms;
 allow mtk_hal_neuralnetworks apk_data_file:file read;
 allow mtk_hal_neuralnetworks proc_ged:file rw_file_perms;
 allow mtk_hal_neuralnetworks gpu_device:dir r_dir_perms;
-allow mtk_hal_neuralnetworks hwservicemanager:binder { call transfer };
-allow mtk_hal_neuralnetworks hwservicemanager_prop:file { getattr map open read };
 
 # Date : WK1919 2019/0513
 # Purpose : allow access to perfmgr for EARA-QoS

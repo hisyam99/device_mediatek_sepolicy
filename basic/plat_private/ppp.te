@@ -1,2 +1,8 @@
-# Purpose: for warning kernel API
+# ==============================================
+# MTK Policy Rule
+# ==============================================
+
+# Date : WK14.53
+# Operation : check in 
+# Purpose: for warning kernel API 
 allow ppp mtp:file read;
