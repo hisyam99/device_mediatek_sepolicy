@@ -216,7 +216,10 @@ genfscon debugfs /smi_mon u:object_r:debugfs_smi_mon:s0
 
 genfscon iso9660 / u:object_r:iso9660:s0
 genfscon rawfs / u:object_r:rawfs:s0
-genfscon fuseblk / u:object_r:fuseblk:s0
+
+# 2019/08/24
+genfscon sysfs /class/sensor u:object_r:sysfs_sensor:s0
+genfscon sysfs /devices/virtual/sensor u:object_r:sysfs_sensor:s0
 
 # MTEE trusty
 genfscon sysfs /devices/platform/trusty u:object_r:mtee_trusty_file:s0
